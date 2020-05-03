@@ -1,0 +1,27 @@
+---
+# tasks file for environment/roles/win-template
+
+
+ - name: Set timezone to "Romance Standard Time" (GMT+01:00)
+   win_timezone:
+      timezone: Romance Standard Time
+
+ - name: Change the hostname to the desired
+   win_hostname:
+      name: '{{ hostname }}'
+   register: res
+
+ - name: Reboot
+   win_reboot:
+   when: res.reboot_required
+
+ - name: Install all security, critical, and rollup updates without a scheduled task
+   win_updates:
+     category_names:
+       - SecurityUpdates
+       - CriticalUpdates
+       - UpdateRollups
+       - Updates
+     log_path: C:\WU-appied.txt
+     win_reboot:
+       when: result.reboot_required

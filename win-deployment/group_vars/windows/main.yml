@@ -1,0 +1,20 @@
+---
+
+# It is suggested that these be encrypted with ansible-vault:
+# ansible-vault edit group_vars/windows.yml
+ansible_connection: winrm
+
+# May also be passed on the command-line via --user
+ansible_user: labusr
+
+# May also be supplied at runtime with --ask-pass
+ansible_password: "{{ ansible_user_password }}"
+
+ansible_port: 5985
+ansible_winrm_transport: ntlm
+ansible_winrm_server_validation: ignore
+
+updates: SecurityUpdates
+hostname: AD01
+domain_name: ansible.lab
+netbios_name: ANSIBLE

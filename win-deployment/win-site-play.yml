@@ -1,0 +1,10 @@
+---
+
+
+ - hosts: windows
+   tasks:
+     - include_tasks: environment/roles/win-template/tasks/main.yml
+
+ - hosts: windows
+   tasks:
+     - include_tasks: environment/roles/win-ad-feature/tasks/main.yml
